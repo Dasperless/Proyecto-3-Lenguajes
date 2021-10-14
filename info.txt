@@ -1,0 +1,7 @@
+a. Nombre del curso: Lenguajes de Porgramación
+b. Número de semestre y año lectivo: 2 2021
+c. Nombre de los Estudiantes: Dario Vargas
+d. Número de carnet de los estudiantes: 2018123226
+e. Número de proyecto programado: 3
+f. Fecha de entrega: ____
+g. Estatus de la entrega: ___
