@@ -1411,7 +1411,7 @@ public class Main extends javax.swing.JFrame {
         JTextField field = (JTextField) evt.getSource(); //Objeto generador del evento.
         int valueLength = field.getText().length(); //Tamaño del input.
         char c = evt.getKeyChar();//Caracter actual
-        int charVal = Integer.parseInt(String.valueOf(c));
+        int charVal = ((int) c)-48;
         
         //Si el tamaño del input no es un dígito o el input no es una unidad.
         if(!Character.isDigit(c) || valueLength >0 || charVal ==0){
