@@ -120,6 +120,13 @@ public class Main extends javax.swing.JFrame {
         P8_6 = new javax.swing.JTextField();
         P8_7 = new javax.swing.JTextField();
         P8_8 = new javax.swing.JTextField();
+        ButtonsPanel = new javax.swing.JPanel();
+        NewGame = new javax.swing.JButton();
+        Restart = new javax.swing.JButton();
+        Verify = new javax.swing.JButton();
+        Suggestion = new javax.swing.JButton();
+        Solution = new javax.swing.JButton();
+        Stats = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,6 +260,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(P2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        P0_0.getAccessibleContext().setAccessibleName("0 0");
 
         Matrix1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix1.setPreferredSize(new java.awt.Dimension(200, 200));
@@ -1280,28 +1289,25 @@ public class Main extends javax.swing.JFrame {
         Tablero.setLayout(TableroLayout);
         TableroLayout.setHorizontalGroup(
             TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(TableroLayout.createSequentialGroup()
+                    .addComponent(Matrix6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Matrix8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TableroLayout.createSequentialGroup()
+                    .addComponent(Matrix0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(TableroLayout.createSequentialGroup()
-                .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(TableroLayout.createSequentialGroup()
-                            .addComponent(Matrix6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(Matrix8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TableroLayout.createSequentialGroup()
-                            .addComponent(Matrix0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(TableroLayout.createSequentialGroup()
-                        .addComponent(Matrix3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Matrix4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Matrix5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(Matrix3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Matrix4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Matrix5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         TableroLayout.setVerticalGroup(
             TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1324,19 +1330,70 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(Matrix8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        NewGame.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        NewGame.setText("Nuevo Juego");
+
+        Restart.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Restart.setText("Nuevo Juego");
+
+        Verify.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Verify.setText("Verificar");
+
+        Suggestion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Suggestion.setText("Sugerencia");
+
+        Solution.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Solution.setText("Ver solución");
+
+        Stats.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Stats.setText("Estadísticas");
+
+        javax.swing.GroupLayout ButtonsPanelLayout = new javax.swing.GroupLayout(ButtonsPanel);
+        ButtonsPanel.setLayout(ButtonsPanelLayout);
+        ButtonsPanelLayout.setHorizontalGroup(
+            ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsPanelLayout.createSequentialGroup()
+                .addComponent(NewGame)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Restart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Verify, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Suggestion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Solution, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Stats)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        ButtonsPanelLayout.setVerticalGroup(
+            ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(NewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Restart, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Verify, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Suggestion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Solution, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Stats, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 389, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                    .addComponent(ButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(ButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1346,14 +1403,18 @@ public class Main extends javax.swing.JFrame {
         boardInput(evt);
     }//GEN-LAST:event_inputTyped
 
+    /**
+     * Este metodo verif    ica el input obtenido del tablero.
+     * @param evt evento
+     */
     private void boardInput(java.awt.event.KeyEvent evt){
-        JTextField field;//Campo del tablero
-        int valueLength;
-        field = (JTextField) evt.getSource();
-        valueLength = field.getText().length();
-       
-        char c = evt.getKeyChar();
-        if(!Character.isDigit(c) || valueLength >0){
+        JTextField field = (JTextField) evt.getSource(); //Objeto generador del evento.
+        int valueLength = field.getText().length(); //Tamaño del input.
+        char c = evt.getKeyChar();//Caracter actual
+        int charVal = Integer.parseInt(String.valueOf(c));
+        
+        //Si el tamaño del input no es un dígito o el input no es una unidad.
+        if(!Character.isDigit(c) || valueLength >0 || charVal ==0){
             evt.consume();
         }
     }
@@ -1395,6 +1456,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonsPanel;
     private javax.swing.JPanel Matrix0;
     private javax.swing.JPanel Matrix1;
     private javax.swing.JPanel Matrix2;
@@ -1404,6 +1466,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Matrix6;
     private javax.swing.JPanel Matrix7;
     private javax.swing.JPanel Matrix8;
+    private javax.swing.JButton NewGame;
     private javax.swing.JTextField P0_0;
     private javax.swing.JTextField P0_1;
     private javax.swing.JTextField P0_2;
@@ -1485,6 +1548,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField P8_6;
     private javax.swing.JTextField P8_7;
     private javax.swing.JTextField P8_8;
+    private javax.swing.JButton Restart;
+    private javax.swing.JButton Solution;
+    private javax.swing.JButton Stats;
+    private javax.swing.JButton Suggestion;
     private javax.swing.JPanel Tablero;
+    private javax.swing.JButton Verify;
     // End of variables declaration//GEN-END:variables
 }
