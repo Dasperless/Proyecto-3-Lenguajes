@@ -4,6 +4,9 @@
  */
 package sudokux;
 
+import java.awt.Component;
+import javax.swing.JTextField;
+
 /**
  *
  * @author dvarg
@@ -116,7 +119,7 @@ public class Main extends javax.swing.JFrame {
         P7_8 = new javax.swing.JTextField();
         P8_6 = new javax.swing.JTextField();
         P8_7 = new javax.swing.JTextField();
-        jTextField80 = new javax.swing.JTextField();
+        P8_8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,75 +130,84 @@ public class Main extends javax.swing.JFrame {
 
         P0_0.setBackground(new java.awt.Color(204, 204, 204));
         P0_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_0ActionPerformed(evt);
+        P0_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        P0_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_1ActionPerformed(evt);
+        P0_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_2ActionPerformed(evt);
+        P0_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_0ActionPerformed(evt);
+        P1_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_1.setBackground(new java.awt.Color(204, 204, 204));
         P1_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_1ActionPerformed(evt);
+        P1_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_2ActionPerformed(evt);
+        P1_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_0ActionPerformed(evt);
+        P2_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_1ActionPerformed(evt);
+        P2_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_2.setBackground(new java.awt.Color(204, 204, 204));
         P2_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_2ActionPerformed(evt);
+        P2_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -246,74 +258,83 @@ public class Main extends javax.swing.JFrame {
         Matrix1.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P0_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_3ActionPerformed(evt);
+        P0_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_4ActionPerformed(evt);
+        P0_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_5ActionPerformed(evt);
+        P0_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_3ActionPerformed(evt);
+        P1_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_4ActionPerformed(evt);
+        P1_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_5ActionPerformed(evt);
+        P1_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_3ActionPerformed(evt);
+        P2_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_4ActionPerformed(evt);
+        P2_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_5ActionPerformed(evt);
+        P2_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -363,77 +384,86 @@ public class Main extends javax.swing.JFrame {
         Matrix2.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P0_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_6ActionPerformed(evt);
+        P0_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_7ActionPerformed(evt);
+        P0_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P0_8.setBackground(new java.awt.Color(204, 204, 204));
         P0_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P0_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P0_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P0_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P0_8ActionPerformed(evt);
+        P0_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_6ActionPerformed(evt);
+        P1_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_7.setBackground(new java.awt.Color(204, 204, 204));
         P1_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_7ActionPerformed(evt);
+        P1_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P1_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P1_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P1_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P1_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P1_8ActionPerformed(evt);
+        P1_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_6.setBackground(new java.awt.Color(204, 204, 204));
         P2_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_6ActionPerformed(evt);
+        P2_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_7ActionPerformed(evt);
+        P2_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P2_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P2_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P2_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P2_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2_8ActionPerformed(evt);
+        P2_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -483,74 +513,83 @@ public class Main extends javax.swing.JFrame {
         Matrix3.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P3_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_0ActionPerformed(evt);
+        P3_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_1ActionPerformed(evt);
+        P3_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_2ActionPerformed(evt);
+        P3_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_0ActionPerformed(evt);
+        P4_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_1ActionPerformed(evt);
+        P4_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_2ActionPerformed(evt);
+        P4_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_0ActionPerformed(evt);
+        P5_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_1ActionPerformed(evt);
+        P5_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_2ActionPerformed(evt);
+        P5_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -601,78 +640,87 @@ public class Main extends javax.swing.JFrame {
 
         P3_3.setBackground(new java.awt.Color(204, 204, 204));
         P3_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_3ActionPerformed(evt);
+        P3_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_4ActionPerformed(evt);
+        P3_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_5.setBackground(new java.awt.Color(204, 204, 204));
         P3_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_5ActionPerformed(evt);
+        P3_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_3ActionPerformed(evt);
+        P4_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_4.setBackground(new java.awt.Color(204, 204, 204));
         P4_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_4ActionPerformed(evt);
+        P4_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_5ActionPerformed(evt);
+        P4_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_3.setBackground(new java.awt.Color(204, 204, 204));
         P5_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_3ActionPerformed(evt);
+        P5_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_4ActionPerformed(evt);
+        P5_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_5.setBackground(new java.awt.Color(204, 204, 204));
         P5_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_5ActionPerformed(evt);
+        P5_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -722,74 +770,83 @@ public class Main extends javax.swing.JFrame {
         Matrix5.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P3_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_6ActionPerformed(evt);
+        P3_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_7ActionPerformed(evt);
+        P3_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P3_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P3_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P3_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P3_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P3_8ActionPerformed(evt);
+        P3_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_6ActionPerformed(evt);
+        P4_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_7ActionPerformed(evt);
+        P4_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P4_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P4_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P4_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P4_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P4_8ActionPerformed(evt);
+        P4_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_6ActionPerformed(evt);
+        P5_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_7ActionPerformed(evt);
+        P5_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P5_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P5_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P5_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P5_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P5_8ActionPerformed(evt);
+        P5_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -839,77 +896,86 @@ public class Main extends javax.swing.JFrame {
         Matrix6.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P6_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_0ActionPerformed(evt);
+        P6_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_1ActionPerformed(evt);
+        P6_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_2.setBackground(new java.awt.Color(204, 204, 204));
         P6_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_2ActionPerformed(evt);
+        P6_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_0ActionPerformed(evt);
+        P7_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_1.setBackground(new java.awt.Color(204, 204, 204));
         P7_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_1ActionPerformed(evt);
+        P7_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_2ActionPerformed(evt);
+        P7_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_0.setBackground(new java.awt.Color(204, 204, 204));
         P8_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_0.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_0ActionPerformed(evt);
+        P8_0.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_1.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_1ActionPerformed(evt);
+        P8_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_2.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_2ActionPerformed(evt);
+        P8_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -959,74 +1025,83 @@ public class Main extends javax.swing.JFrame {
         Matrix7.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P6_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_3ActionPerformed(evt);
+        P6_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_4ActionPerformed(evt);
+        P6_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_5ActionPerformed(evt);
+        P6_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_3ActionPerformed(evt);
+        P7_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_4ActionPerformed(evt);
+        P7_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_5ActionPerformed(evt);
+        P7_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_3.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_3ActionPerformed(evt);
+        P8_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_4.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_4ActionPerformed(evt);
+        P8_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_5.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_5ActionPerformed(evt);
+        P8_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -1077,76 +1152,85 @@ public class Main extends javax.swing.JFrame {
 
         P6_6.setBackground(new java.awt.Color(204, 204, 204));
         P6_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_6ActionPerformed(evt);
+        P6_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_7ActionPerformed(evt);
+        P6_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P6_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P6_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P6_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P6_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P6_8ActionPerformed(evt);
+        P6_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_6ActionPerformed(evt);
+        P7_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_7.setBackground(new java.awt.Color(204, 204, 204));
         P7_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_7ActionPerformed(evt);
+        P7_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P7_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P7_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P7_8.setPreferredSize(new java.awt.Dimension(66, 66));
-        P7_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P7_8ActionPerformed(evt);
+        P7_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_6.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_6ActionPerformed(evt);
+        P8_6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
         P8_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         P8_7.setPreferredSize(new java.awt.Dimension(66, 66));
-        P8_7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P8_7ActionPerformed(evt);
+        P8_7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
-        jTextField80.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField80.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jTextField80.setPreferredSize(new java.awt.Dimension(66, 66));
-        jTextField80.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField80ActionPerformed(evt);
+        P8_8.setBackground(new java.awt.Color(204, 204, 204));
+        P8_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        P8_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_8.setPreferredSize(new java.awt.Dimension(66, 66));
+        P8_8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputTyped(evt);
             }
         });
 
@@ -1171,7 +1255,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(P8_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(P8_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         Matrix8Layout.setVerticalGroup(
             Matrix8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1188,7 +1272,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(Matrix8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(P8_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(P8_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P8_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -1258,330 +1342,22 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void P0_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_0ActionPerformed
-
-    private void P0_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_2ActionPerformed
-
-    private void P0_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_1ActionPerformed
-
-    private void P1_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_2ActionPerformed
-
-    private void P1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_1ActionPerformed
-
-    private void P1_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_0ActionPerformed
-
-    private void P2_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_2ActionPerformed
-
-    private void P2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_1ActionPerformed
-
-    private void P2_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_0ActionPerformed
-
-    private void P0_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_3ActionPerformed
-
-    private void P0_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_5ActionPerformed
-
-    private void P0_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_4ActionPerformed
-
-    private void P1_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_5ActionPerformed
-
-    private void P1_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_4ActionPerformed
-
-    private void P1_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_3ActionPerformed
-
-    private void P2_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_5ActionPerformed
-
-    private void P2_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_4ActionPerformed
-
-    private void P2_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_3ActionPerformed
-
-    private void P1_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_7ActionPerformed
-
-    private void P1_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_8ActionPerformed
-
-    private void P0_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_7ActionPerformed
-
-    private void P0_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_6ActionPerformed
-
-    private void P0_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P0_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P0_8ActionPerformed
-
-    private void P1_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P1_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P1_6ActionPerformed
-
-    private void P2_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_7ActionPerformed
-
-    private void P2_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_8ActionPerformed
-
-    private void P2_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P2_6ActionPerformed
-
-    private void P4_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_1ActionPerformed
-
-    private void P4_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_2ActionPerformed
-
-    private void P3_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_1ActionPerformed
-
-    private void P3_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_0ActionPerformed
-
-    private void P3_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_2ActionPerformed
-
-    private void P4_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_0ActionPerformed
-
-    private void P5_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_1ActionPerformed
-
-    private void P5_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_2ActionPerformed
-
-    private void P5_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_0ActionPerformed
-
-    private void P4_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_4ActionPerformed
-
-    private void P4_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_5ActionPerformed
-
-    private void P3_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_4ActionPerformed
-
-    private void P3_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_3ActionPerformed
-
-    private void P3_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_5ActionPerformed
-
-    private void P4_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_3ActionPerformed
-
-    private void P5_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_4ActionPerformed
-
-    private void P5_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_5ActionPerformed
-
-    private void P5_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_3ActionPerformed
-
-    private void P4_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_7ActionPerformed
-
-    private void P4_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_8ActionPerformed
-
-    private void P3_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_7ActionPerformed
-
-    private void P3_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_6ActionPerformed
-
-    private void P3_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P3_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P3_8ActionPerformed
-
-    private void P4_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P4_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P4_6ActionPerformed
-
-    private void P5_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_7ActionPerformed
-
-    private void P5_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_8ActionPerformed
-
-    private void P5_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P5_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P5_6ActionPerformed
-
-    private void P7_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_1ActionPerformed
-
-    private void P7_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_2ActionPerformed
-
-    private void P6_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_1ActionPerformed
-
-    private void P6_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_0ActionPerformed
-
-    private void P6_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_2ActionPerformed
-
-    private void P7_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_0ActionPerformed
-
-    private void P8_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_1ActionPerformed
-
-    private void P8_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_2ActionPerformed
-
-    private void P8_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_0ActionPerformed
-
-    private void P7_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_4ActionPerformed
-
-    private void P7_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_5ActionPerformed
-
-    private void P6_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_4ActionPerformed
-
-    private void P6_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_3ActionPerformed
-
-    private void P6_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_5ActionPerformed
-
-    private void P7_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_3ActionPerformed
-
-    private void P8_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_4ActionPerformed
-
-    private void P8_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_5ActionPerformed
-
-    private void P8_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_3ActionPerformed
-
-    private void P7_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_7ActionPerformed
-
-    private void P7_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_8ActionPerformed
-
-    private void P6_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_7ActionPerformed
-
-    private void P6_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_6ActionPerformed
-
-    private void P6_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P6_8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P6_8ActionPerformed
-
-    private void P7_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P7_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P7_6ActionPerformed
-
-    private void P8_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_7ActionPerformed
-
-    private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField80ActionPerformed
-
-    private void P8_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P8_6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P8_6ActionPerformed
-
+    private void inputTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTyped
+        boardInput(evt);
+    }//GEN-LAST:event_inputTyped
+
+    private void boardInput(java.awt.event.KeyEvent evt){
+        JTextField field;//Campo del tablero
+        int valueLength;
+        field = (JTextField) evt.getSource();
+        valueLength = field.getText().length();
+       
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c) || valueLength >0){
+            evt.consume();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1708,7 +1484,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField P8_5;
     private javax.swing.JTextField P8_6;
     private javax.swing.JTextField P8_7;
+    private javax.swing.JTextField P8_8;
     private javax.swing.JPanel Tablero;
-    private javax.swing.JTextField jTextField80;
     // End of variables declaration//GEN-END:variables
 }
