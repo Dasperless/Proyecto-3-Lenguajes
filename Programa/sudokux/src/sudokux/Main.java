@@ -3,19 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package sudokux;
-import org.jpl7.*;
+
 /**
  *
  * @author dvarg
  */
-public class Sudokux {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Query q1 = new Query("consult",new Term[]{new Atom("game.pl")});
-        System.out.println("consult "+(q1.hasSolution()?"succed":"failed"));
+        new SudokuX().setVisible(true);
     }
     
 }
