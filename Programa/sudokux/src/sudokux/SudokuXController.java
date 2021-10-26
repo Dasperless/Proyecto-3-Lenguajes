@@ -14,23 +14,19 @@ import org.jpl7.Term;
  * @author Darío Vargas
  */
 public class SudokuXController {
-    private String[] board;
-    
+    private String board;
+    private String boardClues;
     
     public SudokuXController(){
         //Carga el archivo del juego.
         Query load = new Query("consult(game)");
-        load.hasSolution();        
+        load.hasSolution();
     }    
 
     public static void main(String[] args) {
         SudokuXController x = new SudokuXController();
         x.genPrologBoard();
-    }    
-    
-    public String[] getBoard(){return board;}
-    
-    public void setBoard(String[] pBoard){board=pBoard;}
+    }  
     
     /**
      * Genera un número aleatorio entero
@@ -41,7 +37,23 @@ public class SudokuXController {
     private int randInt(int leftLimit,int rightLimit){
         int randomNum = leftLimit + (int) (Math.random() * (rightLimit - leftLimit));
         return randomNum;
-    }
+    }    
+    
+    /**
+     * Obtiene el tablero actual
+     * @return Un string con el tablero actual.
+     */
+    public String getBoard(){return board;}
+    
+    /**
+     * Establece el tablero actual.
+     * @param pBoard 
+     */
+    private void setBoard(String pBoard){board=pBoard;}
+    
+//    private void setBoardClues(String board){
+//        
+//    }
     
     /**
      * Genera una matriz n cantidad de números aleatorios.
@@ -80,4 +92,11 @@ public class SudokuXController {
 
         return solution.get("Board").toString();
     }
+    
+    
+    public void newBoard(){
+        String prologBoard = genPrologBoard();
+        setBoard(prologBoard);
+        
+    }    
 }
