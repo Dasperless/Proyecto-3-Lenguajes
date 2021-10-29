@@ -23,18 +23,20 @@ public class SudokuXController {
         load.hasSolution();
     }
 
-//    public static void main(String[] args) {
-//        SudokuXController x = new SudokuXController();
-//        int[][] a = x.genCluesBoard();
-//        Term[] b = x.genSolutionBoard(a);
-//        int[][] c = x.toIntMatrix(b);
-//
-//        System.out.println(x.toStringBoard(a));
-//        System.out.println(x.toString(c));
-//        x.printMatrix(b);
-//       
-//    }
+    public static void main(String[] args) {
+        SudokuXController x = new SudokuXController();
+        x.newBoard();
+        int[][] tablero1 = x.getBoard();
+        int[][] tablero2 = x.getBoardClues();
+
+        System.out.println();
+        System.out.println(x.getBoardClues());
+    }
     
+    /**
+     * Imprime los términos obtenidos de prolog
+     * @param pBoard el tablero a imprimir.
+     */
     private void printMatrix(Term[] pBoard){
         for(int i =0; i<9;i++){
             System.out.print(pBoard[i].toString());
@@ -42,6 +44,12 @@ public class SudokuXController {
         System.out.print("\n");
     }
     
+    /**
+     * Comvierte una matriz de enteros a string
+     * 
+     * @param pBoard la matriz de enteros
+     * @return la representación en string
+     */
     private String toString(int[][] pBoard){
         String str = "[";
         for(int i =0; i< pBoard.length; i++){
@@ -120,14 +128,19 @@ public class SudokuXController {
         board = pBoard;
     }
 
+    /**
+     * Establece el tablero de pistas.
+     * @param pBoard el tablero de pistas
+     */
     private void setBoardClues(int[][] pBoard) {
         boardClues = pBoard;
     }
 
     /**
-     * Genera una matriz n cantidad de números aleatorios.
+     * Genera una matriz con números aletorios que prolog comprueba
+     * que sean válidos.
      *
-     * @return
+     * @return matriz con las pistas de prolog
      */
     private int[][] genCluesBoard() {
         int[][] clueBoard = new int[9][9];
@@ -173,8 +186,8 @@ public class SudokuXController {
     /**
      * Combierte una matriz de enteros a string
      *
-     * @param board la matriz de enteros a convertir.
-     * @return
+     * @param   board la matriz de enteros a convertir.
+     * @return  representación de la matriz en string 
      */
     private String toStringBoard(int[][] board) {
         String stringBoard = "["; //Inicia la matriz
@@ -201,6 +214,9 @@ public class SudokuXController {
         return stringBoard;
     }
 
+    /**
+     * Genera un nuevo tablero.
+     */
     public void newBoard() {
         int[][] clueBoard = genCluesBoard();
         int[][] solutionBoard = toIntMatrix(genSolutionBoard(clueBoard));

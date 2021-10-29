@@ -4,6 +4,10 @@
  */
 package sudokux;
 
+import java.awt.Component;
+import java.util.Arrays;
+import java.util.HashMap;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -11,12 +15,20 @@ import javax.swing.JTextField;
  * @author dvarg
  */
 public class SudokuX extends javax.swing.JFrame {
-
+    
+    private SudokuXController controller;
+    private int[][] currentBoard;
+    private HashMap componentMap;    
     /**
      * Creates new form main
      */
     public SudokuX() {
         initComponents();
+        controller = new SudokuXController();       //El controlador de prolog
+        controller.newBoard();                      //Crea un nuevo tablero
+        currentBoard = controller.getBoardClues();  //El tablero de pistas
+        createComponentMap();                       //Crea un hash con los componentes
+        setBoard();                                 //Escribe las pistas en la interfaz.
     }
 
     /**
@@ -132,11 +144,13 @@ public class SudokuX extends javax.swing.JFrame {
         Tablero.setPreferredSize(new java.awt.Dimension(600, 600));
 
         Matrix0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Matrix0.setName("Matrix0"); // NOI18N
         Matrix0.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P0_0.setBackground(new java.awt.Color(204, 204, 204));
         P0_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_0.setName("P0_0"); // NOI18N
         P0_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -146,6 +160,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P0_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_1.setName("P0_1"); // NOI18N
         P0_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inputTyped(evt);
@@ -154,6 +169,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P0_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_2.setName("P0_2"); // NOI18N
         P0_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -163,6 +179,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_0.setName("P1_0"); // NOI18N
         P1_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -173,6 +190,7 @@ public class SudokuX extends javax.swing.JFrame {
         P1_1.setBackground(new java.awt.Color(204, 204, 204));
         P1_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_1.setName("P1_1"); // NOI18N
         P1_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -182,6 +200,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_2.setName("P1_2"); // NOI18N
         P1_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -191,6 +210,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_0.setName("P2_0"); // NOI18N
         P2_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -200,6 +220,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_1.setName("P2_1"); // NOI18N
         P2_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -210,6 +231,7 @@ public class SudokuX extends javax.swing.JFrame {
         P2_2.setBackground(new java.awt.Color(204, 204, 204));
         P2_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_2.setName("P2_2"); // NOI18N
         P2_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -261,12 +283,21 @@ public class SudokuX extends javax.swing.JFrame {
         );
 
         P0_0.getAccessibleContext().setAccessibleName("0 0");
+        P0_1.getAccessibleContext().setAccessibleName("0 1");
+        P0_2.getAccessibleContext().setAccessibleName("0 2");
+        P1_0.getAccessibleContext().setAccessibleName("1 0");
+        P1_1.getAccessibleContext().setAccessibleName("1 1");
+        P1_2.getAccessibleContext().setAccessibleName("1 2");
+        P2_0.getAccessibleContext().setAccessibleName("2 0");
+        P2_1.getAccessibleContext().setAccessibleName("2 1");
+        P2_2.getAccessibleContext().setAccessibleName("2 2");
 
         Matrix1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix1.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P0_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_3.setName("P0_3"); // NOI18N
         P0_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -276,6 +307,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P0_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_4.setName("P0_4"); // NOI18N
         P0_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -285,6 +317,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P0_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_5.setName("P0_5"); // NOI18N
         P0_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -294,6 +327,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_3.setName("P1_3"); // NOI18N
         P1_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -303,6 +337,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_4.setName("P1_4"); // NOI18N
         P1_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -312,6 +347,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_5.setName("P1_5"); // NOI18N
         P1_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -321,6 +357,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_3.setName("P2_3"); // NOI18N
         P2_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -330,6 +367,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_4.setName("P2_4"); // NOI18N
         P2_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -339,6 +377,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_5.setName("P2_5"); // NOI18N
         P2_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -388,11 +427,22 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P2_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P0_3.getAccessibleContext().setAccessibleName("0 3");
+        P0_4.getAccessibleContext().setAccessibleName("0 4");
+        P0_5.getAccessibleContext().setAccessibleName("0 5");
+        P1_3.getAccessibleContext().setAccessibleName("1 3");
+        P1_4.getAccessibleContext().setAccessibleName("1 4");
+        P1_5.getAccessibleContext().setAccessibleName("1 5");
+        P2_3.getAccessibleContext().setAccessibleName("2 3");
+        P2_4.getAccessibleContext().setAccessibleName("2 4");
+        P2_5.getAccessibleContext().setAccessibleName("2 5");
+
         Matrix2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix2.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P0_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_6.setName("P0_6"); // NOI18N
         P0_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -402,6 +452,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P0_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_7.setName("P0_7"); // NOI18N
         P0_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -412,6 +463,7 @@ public class SudokuX extends javax.swing.JFrame {
         P0_8.setBackground(new java.awt.Color(204, 204, 204));
         P0_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P0_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P0_8.setName("P0_8"); // NOI18N
         P0_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P0_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -421,6 +473,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_6.setName("P1_6"); // NOI18N
         P1_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -431,6 +484,7 @@ public class SudokuX extends javax.swing.JFrame {
         P1_7.setBackground(new java.awt.Color(204, 204, 204));
         P1_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_7.setName("P1_7"); // NOI18N
         P1_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -440,6 +494,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P1_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P1_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P1_8.setName("P1_8"); // NOI18N
         P1_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P1_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -450,6 +505,7 @@ public class SudokuX extends javax.swing.JFrame {
         P2_6.setBackground(new java.awt.Color(204, 204, 204));
         P2_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_6.setName("P2_6"); // NOI18N
         P2_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -459,6 +515,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_7.setName("P2_7"); // NOI18N
         P2_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -468,6 +525,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P2_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P2_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P2_8.setName("P2_8"); // NOI18N
         P2_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P2_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -517,11 +575,22 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P2_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P0_6.getAccessibleContext().setAccessibleName("0 6");
+        P0_7.getAccessibleContext().setAccessibleName("0 7");
+        P0_8.getAccessibleContext().setAccessibleName("0 8");
+        P1_6.getAccessibleContext().setAccessibleName("1 6");
+        P1_7.getAccessibleContext().setAccessibleName("1 7");
+        P1_8.getAccessibleContext().setAccessibleName("1 8");
+        P2_6.getAccessibleContext().setAccessibleName("2 6");
+        P2_7.getAccessibleContext().setAccessibleName("2 7");
+        P2_8.getAccessibleContext().setAccessibleName("2 8");
+
         Matrix3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix3.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P3_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_0.setName("P3_0"); // NOI18N
         P3_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -531,6 +600,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P3_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_1.setName("P3_1"); // NOI18N
         P3_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -540,6 +610,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P3_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_2.setName("P3_2"); // NOI18N
         P3_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -549,6 +620,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_0.setName("P4_0"); // NOI18N
         P4_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -558,6 +630,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_1.setName("P4_1"); // NOI18N
         P4_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -567,6 +640,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_2.setName("P4_2"); // NOI18N
         P4_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -576,6 +650,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_0.setName("P5_0"); // NOI18N
         P5_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -585,6 +660,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_1.setName("P5_1"); // NOI18N
         P5_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -594,6 +670,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_2.setName("P5_2"); // NOI18N
         P5_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -643,12 +720,23 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P5_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P3_0.getAccessibleContext().setAccessibleName("3 0");
+        P3_1.getAccessibleContext().setAccessibleName("3 1");
+        P3_2.getAccessibleContext().setAccessibleName("3 2");
+        P4_0.getAccessibleContext().setAccessibleName("4 0");
+        P4_1.getAccessibleContext().setAccessibleName("4 1");
+        P4_2.getAccessibleContext().setAccessibleName("4 2");
+        P5_0.getAccessibleContext().setAccessibleName("5 0");
+        P5_1.getAccessibleContext().setAccessibleName("5 1");
+        P5_2.getAccessibleContext().setAccessibleName("5 2");
+
         Matrix4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix4.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P3_3.setBackground(new java.awt.Color(204, 204, 204));
         P3_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_3.setName("P3_3"); // NOI18N
         P3_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -658,6 +746,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P3_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_4.setName("P3_4"); // NOI18N
         P3_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -668,6 +757,7 @@ public class SudokuX extends javax.swing.JFrame {
         P3_5.setBackground(new java.awt.Color(204, 204, 204));
         P3_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_5.setName("P3_5"); // NOI18N
         P3_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -677,6 +767,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_3.setName("P4_3"); // NOI18N
         P4_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -687,6 +778,7 @@ public class SudokuX extends javax.swing.JFrame {
         P4_4.setBackground(new java.awt.Color(204, 204, 204));
         P4_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_4.setName("P4_4"); // NOI18N
         P4_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -696,6 +788,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_5.setName("P4_5"); // NOI18N
         P4_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -706,6 +799,7 @@ public class SudokuX extends javax.swing.JFrame {
         P5_3.setBackground(new java.awt.Color(204, 204, 204));
         P5_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_3.setName("P5_3"); // NOI18N
         P5_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -715,6 +809,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_4.setName("P5_4"); // NOI18N
         P5_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -725,6 +820,7 @@ public class SudokuX extends javax.swing.JFrame {
         P5_5.setBackground(new java.awt.Color(204, 204, 204));
         P5_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_5.setName("P5_5"); // NOI18N
         P5_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -774,11 +870,22 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P5_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P3_3.getAccessibleContext().setAccessibleName("3 3");
+        P3_4.getAccessibleContext().setAccessibleName("3 4");
+        P3_5.getAccessibleContext().setAccessibleName("3 5");
+        P4_3.getAccessibleContext().setAccessibleName("4 3");
+        P4_4.getAccessibleContext().setAccessibleName("4 4");
+        P4_5.getAccessibleContext().setAccessibleName("4 5");
+        P5_3.getAccessibleContext().setAccessibleName("5 3");
+        P5_4.getAccessibleContext().setAccessibleName("5 4");
+        P5_5.getAccessibleContext().setAccessibleName("5 5");
+
         Matrix5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix5.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P3_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_6.setName("P3_6"); // NOI18N
         P3_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -788,6 +895,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P3_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_7.setName("P3_7"); // NOI18N
         P3_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -797,6 +905,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P3_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P3_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P3_8.setName("P3_8"); // NOI18N
         P3_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P3_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -806,6 +915,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_6.setName("P4_6"); // NOI18N
         P4_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -815,6 +925,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_7.setName("P4_7"); // NOI18N
         P4_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -824,6 +935,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P4_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P4_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P4_8.setName("P4_8"); // NOI18N
         P4_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P4_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -833,6 +945,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_6.setName("P5_6"); // NOI18N
         P5_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -842,6 +955,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_7.setName("P5_7"); // NOI18N
         P5_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -851,6 +965,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P5_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P5_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P5_8.setName("P5_8"); // NOI18N
         P5_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P5_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -900,11 +1015,22 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P5_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P3_6.getAccessibleContext().setAccessibleName("3 6");
+        P3_7.getAccessibleContext().setAccessibleName("3 7");
+        P3_8.getAccessibleContext().setAccessibleName("3 8");
+        P4_6.getAccessibleContext().setAccessibleName("4 6");
+        P4_7.getAccessibleContext().setAccessibleName("4 7");
+        P4_8.getAccessibleContext().setAccessibleName("4 8");
+        P5_6.getAccessibleContext().setAccessibleName("5 6");
+        P5_7.getAccessibleContext().setAccessibleName("5 7");
+        P5_8.getAccessibleContext().setAccessibleName("5 8");
+
         Matrix6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix6.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P6_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_0.setName("P6_0"); // NOI18N
         P6_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -914,6 +1040,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P6_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_1.setName("P6_1"); // NOI18N
         P6_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -924,6 +1051,7 @@ public class SudokuX extends javax.swing.JFrame {
         P6_2.setBackground(new java.awt.Color(204, 204, 204));
         P6_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_2.setName("P6_2"); // NOI18N
         P6_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -933,6 +1061,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_0.setName("P7_0"); // NOI18N
         P7_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -943,6 +1072,7 @@ public class SudokuX extends javax.swing.JFrame {
         P7_1.setBackground(new java.awt.Color(204, 204, 204));
         P7_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_1.setName("P7_1"); // NOI18N
         P7_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -952,6 +1082,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_2.setName("P7_2"); // NOI18N
         P7_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -962,6 +1093,7 @@ public class SudokuX extends javax.swing.JFrame {
         P8_0.setBackground(new java.awt.Color(204, 204, 204));
         P8_0.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_0.setName("P8_0"); // NOI18N
         P8_0.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_0.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -971,6 +1103,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_1.setName("P8_1"); // NOI18N
         P8_1.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -980,6 +1113,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_2.setName("P8_2"); // NOI18N
         P8_2.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1029,11 +1163,22 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P8_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P6_0.getAccessibleContext().setAccessibleName("6 0");
+        P6_1.getAccessibleContext().setAccessibleName("6 1");
+        P6_2.getAccessibleContext().setAccessibleName("6 2");
+        P7_0.getAccessibleContext().setAccessibleName("7 0");
+        P7_1.getAccessibleContext().setAccessibleName("7 1");
+        P7_2.getAccessibleContext().setAccessibleName("7 2");
+        P8_0.getAccessibleContext().setAccessibleName("8 0");
+        P8_1.getAccessibleContext().setAccessibleName("8 1");
+        P8_2.getAccessibleContext().setAccessibleName("8 2");
+
         Matrix7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix7.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P6_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_3.setName("P6_3"); // NOI18N
         P6_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1043,6 +1188,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P6_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_4.setName("P6_4"); // NOI18N
         P6_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1052,6 +1198,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P6_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_5.setName("P6_5"); // NOI18N
         P6_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1061,6 +1208,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_3.setName("P7_3"); // NOI18N
         P7_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1070,6 +1218,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_4.setName("P7_4"); // NOI18N
         P7_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1079,6 +1228,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_5.setName("P7_5"); // NOI18N
         P7_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1088,6 +1238,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_3.setName("P8_3"); // NOI18N
         P8_3.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1097,6 +1248,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_4.setName("P8_4"); // NOI18N
         P8_4.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1106,6 +1258,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_5.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_5.setName("P8_5"); // NOI18N
         P8_5.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1155,12 +1308,23 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P8_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        P6_3.getAccessibleContext().setAccessibleName("6 3");
+        P6_4.getAccessibleContext().setAccessibleName("6 4");
+        P6_5.getAccessibleContext().setAccessibleName("6 5");
+        P7_3.getAccessibleContext().setAccessibleName("7 3");
+        P7_4.getAccessibleContext().setAccessibleName("7 4");
+        P7_5.getAccessibleContext().setAccessibleName("7 5");
+        P8_3.getAccessibleContext().setAccessibleName("8 3");
+        P8_4.getAccessibleContext().setAccessibleName("8 4");
+        P8_5.getAccessibleContext().setAccessibleName("8 5");
+
         Matrix8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Matrix8.setPreferredSize(new java.awt.Dimension(200, 200));
 
         P6_6.setBackground(new java.awt.Color(204, 204, 204));
         P6_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_6.setName("P6_6"); // NOI18N
         P6_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1170,6 +1334,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P6_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_7.setName("P6_7"); // NOI18N
         P6_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1179,6 +1344,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P6_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P6_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P6_8.setName("P6_8"); // NOI18N
         P6_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P6_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1188,6 +1354,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_6.setName("P7_6"); // NOI18N
         P7_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1198,6 +1365,7 @@ public class SudokuX extends javax.swing.JFrame {
         P7_7.setBackground(new java.awt.Color(204, 204, 204));
         P7_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_7.setName("P7_7"); // NOI18N
         P7_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1207,6 +1375,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P7_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P7_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P7_8.setName("P7_8"); // NOI18N
         P7_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P7_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1216,6 +1385,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_6.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_6.setName("P8_6"); // NOI18N
         P8_6.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1225,6 +1395,7 @@ public class SudokuX extends javax.swing.JFrame {
 
         P8_7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_7.setName("P8_7"); // NOI18N
         P8_7.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1235,6 +1406,7 @@ public class SudokuX extends javax.swing.JFrame {
         P8_8.setBackground(new java.awt.Color(204, 204, 204));
         P8_8.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         P8_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        P8_8.setName("P8_8"); // NOI18N
         P8_8.setPreferredSize(new java.awt.Dimension(66, 66));
         P8_8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1283,6 +1455,16 @@ public class SudokuX extends javax.swing.JFrame {
                     .addComponent(P8_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P8_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        P6_6.getAccessibleContext().setAccessibleName("6 6");
+        P6_7.getAccessibleContext().setAccessibleName("6 7");
+        P6_8.getAccessibleContext().setAccessibleName("6 8");
+        P7_6.getAccessibleContext().setAccessibleName("7 6");
+        P7_7.getAccessibleContext().setAccessibleName("7 7");
+        P7_8.getAccessibleContext().setAccessibleName("7 8");
+        P8_6.getAccessibleContext().setAccessibleName("8 6");
+        P8_7.getAccessibleContext().setAccessibleName("8 7");
+        P8_8.getAccessibleContext().setAccessibleName("8 8");
 
         javax.swing.GroupLayout TableroLayout = new javax.swing.GroupLayout(Tablero);
         Tablero.setLayout(TableroLayout);
@@ -1388,7 +1570,7 @@ public class SudokuX extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 602, Short.MAX_VALUE)
                     .addComponent(ButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1405,17 +1587,20 @@ public class SudokuX extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTyped
+        System.out.println(Arrays.deepToString(currentBoard));
+        JTextField field = (JTextField) evt.getSource();    //Objeto generador del evento.        
+        System.out.println(getComponentByName(field.getName()));
         boardInput(evt);
     }//GEN-LAST:event_inputTyped
-
+    
     /**
-     * Este metodo verif    ica el input obtenido del tablero.
+     * Este metodo verifica el input obtenido del tablero.
      * @param evt evento
      */
     private void boardInput(java.awt.event.KeyEvent evt){
-        JTextField field = (JTextField) evt.getSource(); //Objeto generador del evento.
-        int valueLength = field.getText().length(); //Tamaño del input.
-        char c = evt.getKeyChar();//Caracter actual
+        JTextField field = (JTextField) evt.getSource();    //Objeto generador del evento.
+        int valueLength = field.getText().length();         //Tamaño del input.
+        char c = evt.getKeyChar();                          //Caracter actual
         int charVal = ((int) c)-48;
         
         //Si el tamaño del input no es un dígito o el input no es una unidad.
@@ -1423,6 +1608,50 @@ public class SudokuX extends javax.swing.JFrame {
             evt.consume();
         }
     }
+    
+    /**
+     * Obtiene los textfields del tablero y los convierte en un hashmap
+     */
+    private void createComponentMap(){
+        componentMap = new HashMap<String,Component>();
+        Component[] components = Tablero.getComponents();
+        for (Component component : components) {
+            JPanel square = (JPanel) component;
+            Component[] fields = square.getComponents();
+            for (Component field : fields) {
+                componentMap.put(field.getName(), field);
+            }
+        }
+        
+    }
+    
+    /**
+     * Establece las pistas del tablero
+     */
+    private void setBoard(){
+        for(int i =0; i < 9;i++){
+            for(int j=0;j<9;j++){
+                String name = String.format("P%o_%o", i,j);
+                JTextField field = (JTextField) getComponentByName(name);
+                if(currentBoard[i][j] != 0){
+                    field.setText(String.valueOf(currentBoard[i][j]));
+                    field.setEditable(false);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Obtiene los componentes por nombre
+     * @param name el nombre del componente
+     * @return el componente
+     */
+    public Component getComponentByName(String name) {
+            if (componentMap.containsKey(name)) {
+                    return (Component) componentMap.get(name);
+            }
+            else return null;
+    }    
     
     /**
      * @param args the command line arguments
@@ -1449,13 +1678,6 @@ public class SudokuX extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SudokuX.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
