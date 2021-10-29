@@ -4,9 +4,11 @@
  */
 package sudokux;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,10 +17,12 @@ import javax.swing.JTextField;
  * @author dvarg
  */
 public class SudokuX extends javax.swing.JFrame {
-    
+
     private SudokuXController controller;
-    private int[][] currentBoard;
-    private HashMap componentMap;    
+    private int[][] currentBoard = new int[9][9];
+    private HashMap componentMap;
+    private int numSuggestions = 5;
+
     /**
      * Creates new form main
      */
@@ -26,7 +30,7 @@ public class SudokuX extends javax.swing.JFrame {
         initComponents();
         controller = new SudokuXController();       //El controlador de prolog
         controller.newBoard();                      //Crea un nuevo tablero
-        currentBoard = controller.getBoardClues();  //El tablero de pistas
+        copyBoard(controller.getBoardClues());      //El tablero de pistas
         createComponentMap();                       //Crea un hash con los componentes
         setBoard();                                 //Escribe las pistas en la interfaz.
     }
@@ -138,6 +142,7 @@ public class SudokuX extends javax.swing.JFrame {
         Suggestion = new javax.swing.JButton();
         Solution = new javax.swing.JButton();
         Stats = new javax.swing.JButton();
+        Suggestions = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1470,28 +1475,25 @@ public class SudokuX extends javax.swing.JFrame {
         Tablero.setLayout(TableroLayout);
         TableroLayout.setHorizontalGroup(
             TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(TableroLayout.createSequentialGroup()
+                    .addComponent(Matrix6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Matrix8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TableroLayout.createSequentialGroup()
+                    .addComponent(Matrix0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(Matrix2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(TableroLayout.createSequentialGroup()
-                .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(TableroLayout.createSequentialGroup()
-                            .addComponent(Matrix6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(Matrix8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TableroLayout.createSequentialGroup()
-                            .addComponent(Matrix0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Matrix2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(TableroLayout.createSequentialGroup()
-                        .addComponent(Matrix3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Matrix4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Matrix5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Matrix3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Matrix4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Matrix5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         TableroLayout.setVerticalGroup(
             TableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1518,16 +1520,31 @@ public class SudokuX extends javax.swing.JFrame {
         NewGame.setText("Nuevo Juego");
 
         Restart.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        Restart.setText("Nuevo Juego");
+        Restart.setText("Reiniciar");
+        Restart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestartActionPerformed(evt);
+            }
+        });
 
         Verify.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Verify.setText("Verificar");
 
         Suggestion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Suggestion.setText("Sugerencia");
+        Suggestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuggestionActionPerformed(evt);
+            }
+        });
 
         Solution.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Solution.setText("Ver solución");
+        Solution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SolutionActionPerformed(evt);
+            }
+        });
 
         Stats.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Stats.setText("Estadísticas");
@@ -1545,39 +1562,43 @@ public class SudokuX extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Suggestion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Solution, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Stats)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(Stats, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         ButtonsPanelLayout.setVerticalGroup(
             ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ButtonsPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Stats, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Stats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Suggestion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Verify, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Restart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NewGame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(NewGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Restart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Verify)
+                        .addComponent(Suggestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+
+        Suggestions.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Suggestions.setText("Sugerencias: 5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 602, Short.MAX_VALUE)
-                    .addComponent(ButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Suggestions)
+                    .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addComponent(Suggestions, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(ButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1592,28 +1613,86 @@ public class SudokuX extends javax.swing.JFrame {
         System.out.println(getComponentByName(field.getName()));
         boardInput(evt);
     }//GEN-LAST:event_inputTyped
-    
+
+    private void SuggestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuggestionActionPerformed
+        if (numSuggestions != 0) {
+            newSuggestion();
+            numSuggestions--;
+            setSuggestions(numSuggestions);
+        }
+    }//GEN-LAST:event_SuggestionActionPerformed
+
+    private void RestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestartActionPerformed
+        restart();
+    }//GEN-LAST:event_RestartActionPerformed
+
+    private void SolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolutionActionPerformed
+        seeSolution();
+    }//GEN-LAST:event_SolutionActionPerformed
+
     /**
      * Este metodo verifica el input obtenido del tablero.
+     *
      * @param evt evento
      */
-    private void boardInput(java.awt.event.KeyEvent evt){
+    private void boardInput(java.awt.event.KeyEvent evt) {
         JTextField field = (JTextField) evt.getSource();    //Objeto generador del evento.
         int valueLength = field.getText().length();         //Tamaño del input.
         char c = evt.getKeyChar();                          //Caracter actual
-        int charVal = ((int) c)-48;
-        
+        int charVal = ((int) c) - 48;
+
         //Si el tamaño del input no es un dígito o el input no es una unidad.
-        if(!Character.isDigit(c) || valueLength >0 || charVal ==0){
+        if (!Character.isDigit(c) || valueLength > 0 || charVal == 0) {
             evt.consume();
         }
     }
     
+    private void setSuggestions(int num){
+        numSuggestions = num;
+        Suggestions.setText(String.format("Sugerencias: %d", numSuggestions));
+    }
+    
+    private void seeSolution(){
+        int[][] board = controller.getBoard();
+        for(int i =0;i<9;i++){
+            for(int j=0;j<9;j++){
+                String name = String.format("P%d_%d", i, j);
+                JTextField field = (JTextField) getComponentByName(name);     
+                field.setText(String.valueOf(board[i][j]));
+            }
+        }
+    }
+    
+    private void restart() {
+        copyBoard(controller.getBoardClues());
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                String name = String.format("P%d_%d", i, j);
+                JTextField field = (JTextField) getComponentByName(name);              
+                if (field.isEnabled()) {
+                    if (currentBoard[i][j] == 0) {
+                        field.setText("");
+                    } else {
+                        field.setText(String.valueOf(currentBoard[i][j]));
+                    }
+                    field.setForeground(Color.black);
+                }
+            }
+        }
+        setSuggestions(5);
+    }
+    
+    private void copyBoard(int[][] pBoard){
+        for(int i =0; i<9;i++){
+            System.arraycopy(pBoard[i], 0, currentBoard[i], 0, 9);
+        }
+    }
+
     /**
      * Obtiene los textfields del tablero y los convierte en un hashmap
      */
-    private void createComponentMap(){
-        componentMap = new HashMap<String,Component>();
+    private void createComponentMap() {
+        componentMap = new HashMap<String, Component>();
         Component[] components = Tablero.getComponents();
         for (Component component : components) {
             JPanel square = (JPanel) component;
@@ -1622,37 +1701,64 @@ public class SudokuX extends javax.swing.JFrame {
                 componentMap.put(field.getName(), field);
             }
         }
-        
+
     }
-    
+
     /**
      * Establece las pistas del tablero
      */
-    private void setBoard(){
-        for(int i =0; i < 9;i++){
-            for(int j=0;j<9;j++){
-                String name = String.format("P%o_%o", i,j);
+    private void setBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                String name = String.format("P%d_%d", i, j);
                 JTextField field = (JTextField) getComponentByName(name);
-                if(currentBoard[i][j] != 0){
+                if (currentBoard[i][j] != 0) {
                     field.setText(String.valueOf(currentBoard[i][j]));
-                    field.setEditable(false);
+                    field.setEnabled(false);
                 }
             }
         }
     }
-    
+
+    private int randomIndex() {
+        Random r = new Random();
+        int i = r.nextInt(9);
+        return i;
+    }
+
+    private void newSuggestion() {
+        boolean isEmpty = false;
+        while (!isEmpty) {
+            int i = randomIndex();
+            int j = randomIndex();
+            System.out.println(String.format("[%d,%d]", i, j));
+            String name = String.format("P%d_%d", i, j);
+            JTextField field = (JTextField) getComponentByName(name);
+            if (field.isEditable() && currentBoard[i][j] == 0) {
+                isEmpty = true;
+                currentBoard[i][j] = controller.getBoard()[i][j];
+                field.setForeground(Color.green);
+                field.setText(String.valueOf(currentBoard[i][j]));
+                field.setEditable(false);
+            }
+
+        }
+    }
+
     /**
      * Obtiene los componentes por nombre
+     *
      * @param name el nombre del componente
      * @return el componente
      */
     public Component getComponentByName(String name) {
-            if (componentMap.containsKey(name)) {
-                    return (Component) componentMap.get(name);
-            }
-            else return null;
-    }    
-    
+        if (componentMap.containsKey(name)) {
+            return (Component) componentMap.get(name);
+        } else {
+            return null;
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1785,6 +1891,7 @@ public class SudokuX extends javax.swing.JFrame {
     private javax.swing.JButton Solution;
     private javax.swing.JButton Stats;
     private javax.swing.JButton Suggestion;
+    private javax.swing.JLabel Suggestions;
     private javax.swing.JPanel Tablero;
     private javax.swing.JButton Verify;
     // End of variables declaration//GEN-END:variables

@@ -96,7 +96,7 @@ public class SudokuXController {
      * @param rightLimit
      * @return un entero.
      */
-    private int randInt(int leftLimit, int rightLimit) {
+    public int randInt(int leftLimit, int rightLimit) {
         int randomNum = leftLimit + (int) (Math.random() * (rightLimit - leftLimit));
         return randomNum;
     }
