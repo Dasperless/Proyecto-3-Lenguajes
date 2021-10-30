@@ -2219,8 +2219,7 @@
                   <Component id="Suggestion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Solution" pref="113" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Stats" min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2228,15 +2227,12 @@
           <Group type="103" groupAlignment="1" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Stats" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="NewGame" alignment="3" max="32767" attributes="0"/>
-                          <Component id="Restart" alignment="3" max="32767" attributes="0"/>
-                          <Component id="Verify" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Suggestion" alignment="3" max="32767" attributes="0"/>
-                          <Component id="Solution" alignment="3" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="NewGame" alignment="3" max="32767" attributes="0"/>
+                      <Component id="Restart" alignment="3" max="32767" attributes="0"/>
+                      <Component id="Verify" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Suggestion" alignment="3" max="32767" attributes="0"/>
+                      <Component id="Solution" alignment="3" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -2297,14 +2293,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SolutionActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="Stats">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Estad&#xed;sticas"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

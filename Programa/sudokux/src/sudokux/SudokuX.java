@@ -22,7 +22,12 @@ public class SudokuX extends javax.swing.JFrame {
     private SudokuXController controller;
     private int[][] currentBoard = new int[9][9];
     private HashMap componentMap;
-    private int numSuggestions = 5;
+    private int suggestions = 5;
+    private int numInput = 0;
+    private int numVerif = 0;
+    private int numVerifErr = 0;
+    private int numSuggestions = 0;
+    private String completionState = "";
 
     /**
      * Creates new form main
@@ -142,7 +147,6 @@ public class SudokuX extends javax.swing.JFrame {
         Verify = new javax.swing.JButton();
         Suggestion = new javax.swing.JButton();
         Solution = new javax.swing.JButton();
-        Stats = new javax.swing.JButton();
         Suggestions = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1557,9 +1561,6 @@ public class SudokuX extends javax.swing.JFrame {
             }
         });
 
-        Stats.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        Stats.setText("Estadísticas");
-
         javax.swing.GroupLayout ButtonsPanelLayout = new javax.swing.GroupLayout(ButtonsPanel);
         ButtonsPanel.setLayout(ButtonsPanelLayout);
         ButtonsPanelLayout.setHorizontalGroup(
@@ -1574,21 +1575,18 @@ public class SudokuX extends javax.swing.JFrame {
                 .addComponent(Suggestion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Stats, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
         );
         ButtonsPanelLayout.setVerticalGroup(
             ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ButtonsPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Stats, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(NewGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Restart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Verify)
-                        .addComponent(Suggestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(ButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Restart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Verify)
+                    .addComponent(Suggestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Solution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         Suggestions.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1619,9 +1617,7 @@ public class SudokuX extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTyped
-//        System.out.println(Arrays.deepToString(currentBoard));
         JTextField field = (JTextField) evt.getSource();    //Objeto generador del evento.        
-//        System.out.println(getComponentByName(field.getName()));
         boardInput(evt);
     }//GEN-LAST:event_inputTyped
 
@@ -1665,10 +1661,14 @@ public class SudokuX extends javax.swing.JFrame {
             evt.consume();
         }
         String name = field.getName();
-        int i = Integer.parseInt(name.substring(1,2));
-        int j = Integer.parseInt(name.substring(3,4));
-        currentBoard[i][j]= charVal;
-         
+        int i = Integer.parseInt(name.substring(1, 2));
+        int j = Integer.parseInt(name.substring(3, 4));
+        if (charVal == -40) {
+            currentBoard[i][j] = 0;
+        } else if (charVal >= 1 && charVal <= 9) {
+            currentBoard[i][j] = charVal;
+            numInput++;
+        }
 
     }
 
@@ -1681,7 +1681,7 @@ public class SudokuX extends javax.swing.JFrame {
         numSuggestions = num;
         Suggestions.setText(String.format("Sugerencias: %d", numSuggestions));
     }
-    
+
     /**
      * Inicia un nuevo juego
      */
@@ -1696,8 +1696,26 @@ public class SudokuX extends javax.swing.JFrame {
             field.setText("");
             field.setForeground(Color.black);
         }
-
+        if (completionState.equals("")) {
+            completionState = "Abandono";
+        }
+        showStatistics();
         setBoard();
+    }
+
+    private void showStatistics() {
+        String str;
+        str = String.format("Cantidad de celdas de ingreso de dígitos:  %d\n"
+                + "Cantidad de verificaciones realizadas: %d\n"
+                + "Cantidad de errores de verificación: %d\n"
+                + "Cantidad de sugerencias utilizadas: %d\n"
+                + "Tipo Finalización: %s", numInput, numVerif, numVerifErr, numSuggestions, completionState);
+        JOptionPane.showMessageDialog(null, str);
+        numInput = 0;
+        numVerif = 0;
+        numVerifErr = 0;
+        numSuggestions = 0;
+        completionState = "";
     }
 
     /**
@@ -1709,9 +1727,12 @@ public class SudokuX extends javax.swing.JFrame {
             for (int j = 0; j < 9; j++) {
                 String name = String.format("P%d_%d", i, j);
                 JTextField field = (JTextField) getComponentByName(name);
-                field.setText(String.valueOf(board[i][j]));
+                String value = String.valueOf(board[i][j]);
+                field.setText(value);
+                currentBoard[i][j] = Integer.parseInt(value);
             }
         }
+        completionState = "Autosolucion";
     }
 
     /**
@@ -1728,6 +1749,9 @@ public class SudokuX extends javax.swing.JFrame {
                         field.setText("");
                     } else {
                         field.setText(String.valueOf(currentBoard[i][j]));
+                    }
+                    if (!field.isEditable()) {
+                        field.setEditable(true);
                     }
                     field.setForeground(Color.black);
                 }
@@ -1807,8 +1831,8 @@ public class SudokuX extends javax.swing.JFrame {
                 field.setText(String.valueOf(currentBoard[i][j]));
                 field.setEditable(false);
             }
-
         }
+        numSuggestions++;
     }
 
     /**
@@ -1825,32 +1849,41 @@ public class SudokuX extends javax.swing.JFrame {
         }
     }
     
-    private void verify(){
+    /**
+     * Verifica si las soluciones del tablero son correctas.
+     */
+    private void verify() {
         int[][] board = controller.getBoard();
-        System.out.println(Arrays.deepToString(currentBoard));
-        System.out.println(Arrays.deepToString(board));
+//        System.out.println(Arrays.deepToString(currentBoard));
+//        System.out.println(Arrays.deepToString(board));
         int empty = 0;
         int incorrect = 0;
-        for(int i =0;i<9;i++){
-            for(int j = 0; j<9;j++){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 String name = String.format("P%d_%d", i, j);
-                JTextField field = (JTextField) getComponentByName(name);                
-                if(currentBoard[i][j] == 0){
-                   empty++; 
-                }else if(currentBoard[i][j] != board[i][j]){
+                JTextField field = (JTextField) getComponentByName(name);
+                if (currentBoard[i][j] == 0) {
+                    empty++;
+                } else if (currentBoard[i][j] != board[i][j]) {
                     incorrect++;
+                    numVerifErr++;
                 }
             }
         }
-        
-        if(empty ==0 && incorrect == 0){
+
+        if (empty == 0 && incorrect == 0) {
             JOptionPane.showMessageDialog(null, "juego finalizado exitosamente, felicidades!!!");
-        }else{
-            String str = String.format("hay %d dígitos incorrectos y hay %d celdas vacías de %d", incorrect,empty,64);
-            JOptionPane.showMessageDialog(null,str);
+            if (completionState.equals("")) {
+                completionState = "Exitosa";
+
+            }
+        } else {
+            String str = String.format("hay %d dígitos incorrecto(s) y hay %d celda(s) vacías de %d", incorrect, empty, 64);
+            JOptionPane.showMessageDialog(null, str);
         }
+        numVerif++;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1981,7 +2014,6 @@ public class SudokuX extends javax.swing.JFrame {
     private javax.swing.JTextField P8_8;
     private javax.swing.JButton Restart;
     private javax.swing.JButton Solution;
-    private javax.swing.JButton Stats;
     private javax.swing.JButton Suggestion;
     private javax.swing.JLabel Suggestions;
     private javax.swing.JPanel Tablero;
