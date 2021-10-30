@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -1518,6 +1519,11 @@ public class SudokuX extends javax.swing.JFrame {
 
         NewGame.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         NewGame.setText("Nuevo Juego");
+        NewGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewGameActionPerformed(evt);
+            }
+        });
 
         Restart.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Restart.setText("Reiniciar");
@@ -1529,6 +1535,11 @@ public class SudokuX extends javax.swing.JFrame {
 
         Verify.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Verify.setText("Verificar");
+        Verify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerifyActionPerformed(evt);
+            }
+        });
 
         Suggestion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Suggestion.setText("Sugerencia");
@@ -1608,9 +1619,9 @@ public class SudokuX extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTyped
-        System.out.println(Arrays.deepToString(currentBoard));
+//        System.out.println(Arrays.deepToString(currentBoard));
         JTextField field = (JTextField) evt.getSource();    //Objeto generador del evento.        
-        System.out.println(getComponentByName(field.getName()));
+//        System.out.println(getComponentByName(field.getName()));
         boardInput(evt);
     }//GEN-LAST:event_inputTyped
 
@@ -1630,6 +1641,14 @@ public class SudokuX extends javax.swing.JFrame {
         seeSolution();
     }//GEN-LAST:event_SolutionActionPerformed
 
+    private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
+        newGame();
+    }//GEN-LAST:event_NewGameActionPerformed
+
+    private void VerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerifyActionPerformed
+        verify();
+    }//GEN-LAST:event_VerifyActionPerformed
+
     /**
      * Este metodo verifica el input obtenido del tablero.
      *
@@ -1645,30 +1664,65 @@ public class SudokuX extends javax.swing.JFrame {
         if (!Character.isDigit(c) || valueLength > 0 || charVal == 0) {
             evt.consume();
         }
+        String name = field.getName();
+        int i = Integer.parseInt(name.substring(1,2));
+        int j = Integer.parseInt(name.substring(3,4));
+        currentBoard[i][j]= charVal;
+         
+
     }
-    
-    private void setSuggestions(int num){
+
+    /**
+     * Establece la cantidad de sugerencias.
+     *
+     * @param num La cantidad de sugerencias.
+     */
+    private void setSuggestions(int num) {
         numSuggestions = num;
         Suggestions.setText(String.format("Sugerencias: %d", numSuggestions));
     }
     
-    private void seeSolution(){
+    /**
+     * Inicia un nuevo juego
+     */
+    private void newGame() {
+        controller.newBoard();
+        copyBoard(controller.getBoardClues());
+        for (var fields : componentMap.values()) {
+            JTextField field = (JTextField) fields;
+            if (!field.isEnabled()) {
+                field.setEnabled(true);
+            }
+            field.setText("");
+            field.setForeground(Color.black);
+        }
+
+        setBoard();
+    }
+
+    /**
+     * Muestra las soluciones en el tablero
+     */
+    private void seeSolution() {
         int[][] board = controller.getBoard();
-        for(int i =0;i<9;i++){
-            for(int j=0;j<9;j++){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 String name = String.format("P%d_%d", i, j);
-                JTextField field = (JTextField) getComponentByName(name);     
+                JTextField field = (JTextField) getComponentByName(name);
                 field.setText(String.valueOf(board[i][j]));
             }
         }
     }
-    
+
+    /**
+     * Reinicia el tablero
+     */
     private void restart() {
         copyBoard(controller.getBoardClues());
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 String name = String.format("P%d_%d", i, j);
-                JTextField field = (JTextField) getComponentByName(name);              
+                JTextField field = (JTextField) getComponentByName(name);
                 if (field.isEnabled()) {
                     if (currentBoard[i][j] == 0) {
                         field.setText("");
@@ -1681,9 +1735,14 @@ public class SudokuX extends javax.swing.JFrame {
         }
         setSuggestions(5);
     }
-    
-    private void copyBoard(int[][] pBoard){
-        for(int i =0; i<9;i++){
+
+    /**
+     * Copia la matriz de pistas al tablero de la interfaz.
+     *
+     * @param pBoard la matriz de pistas.
+     */
+    private void copyBoard(int[][] pBoard) {
+        for (int i = 0; i < 9; i++) {
             System.arraycopy(pBoard[i], 0, currentBoard[i], 0, 9);
         }
     }
@@ -1720,18 +1779,25 @@ public class SudokuX extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Retorna un índice aleatorio
+     *
+     * @return un índice aleatorio
+     */
     private int randomIndex() {
         Random r = new Random();
         int i = r.nextInt(9);
         return i;
     }
 
+    /**
+     * Muestra una nueva sugerencia en el tablero.
+     */
     private void newSuggestion() {
         boolean isEmpty = false;
         while (!isEmpty) {
             int i = randomIndex();
             int j = randomIndex();
-            System.out.println(String.format("[%d,%d]", i, j));
             String name = String.format("P%d_%d", i, j);
             JTextField field = (JTextField) getComponentByName(name);
             if (field.isEditable() && currentBoard[i][j] == 0) {
@@ -1758,7 +1824,33 @@ public class SudokuX extends javax.swing.JFrame {
             return null;
         }
     }
-
+    
+    private void verify(){
+        int[][] board = controller.getBoard();
+        System.out.println(Arrays.deepToString(currentBoard));
+        System.out.println(Arrays.deepToString(board));
+        int empty = 0;
+        int incorrect = 0;
+        for(int i =0;i<9;i++){
+            for(int j = 0; j<9;j++){
+                String name = String.format("P%d_%d", i, j);
+                JTextField field = (JTextField) getComponentByName(name);                
+                if(currentBoard[i][j] == 0){
+                   empty++; 
+                }else if(currentBoard[i][j] != board[i][j]){
+                    incorrect++;
+                }
+            }
+        }
+        
+        if(empty ==0 && incorrect == 0){
+            JOptionPane.showMessageDialog(null, "juego finalizado exitosamente, felicidades!!!");
+        }else{
+            String str = String.format("hay %d dígitos incorrectos y hay %d celdas vacías de %d", incorrect,empty,64);
+            JOptionPane.showMessageDialog(null,str);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

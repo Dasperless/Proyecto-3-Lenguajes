@@ -23,66 +23,58 @@ public class SudokuXController {
         load.hasSolution();
     }
 
-    public static void main(String[] args) {
-        SudokuXController x = new SudokuXController();
-        x.newBoard();
-        int[][] tablero1 = x.getBoard();
-        int[][] tablero2 = x.getBoardClues();
-
-        System.out.println();
-        System.out.println(x.getBoardClues());
-    }
-    
     /**
      * Imprime los términos obtenidos de prolog
+     *
      * @param pBoard el tablero a imprimir.
      */
-    private void printMatrix(Term[] pBoard){
-        for(int i =0; i<9;i++){
+    private void printMatrix(Term[] pBoard) {
+        for (int i = 0; i < 9; i++) {
             System.out.print(pBoard[i].toString());
         }
         System.out.print("\n");
     }
-    
+
     /**
      * Comvierte una matriz de enteros a string
-     * 
+     *
      * @param pBoard la matriz de enteros
      * @return la representación en string
      */
-    private String toString(int[][] pBoard){
+    private String toString(int[][] pBoard) {
         String str = "[";
-        for(int i =0; i< pBoard.length; i++){
-            str+="[";
-            for(int j = 0; j < pBoard[0].length; j++){
-                str+= String.valueOf(pBoard[i][j]);
-                if(j != 8){
-                    str+=",";
+        for (int i = 0; i < pBoard.length; i++) {
+            str += "[";
+            for (int j = 0; j < pBoard[0].length; j++) {
+                str += String.valueOf(pBoard[i][j]);
+                if (j != 8) {
+                    str += ",";
                 }
             }
-            str+="]";
-            if(i != 8){
-                str+=",";
-            }            
+            str += "]";
+            if (i != 8) {
+                str += ",";
+            }
         }
-        str+="]";
+        str += "]";
         return str;
     }
-    
+
     /**
      * Convierte el resultado de prolog en un matriz de enteros.
+     *
      * @param plResult
      * @return Una matriz de enteros
      */
     private int[][] toIntMatrix(Term[] plResult) {
         int[][] intMatrix = new int[9][9];
-        for (int i = 0; i< 9; i++) {
+        for (int i = 0; i < 9; i++) {
             String row = plResult[i].toString();
 
             //Convierte los strings a arreglos de enteros.
             int[] arr = Arrays.stream(row.substring(1, row.length() - 1).split(","))
-                    .map(String::trim).mapToInt(Integer::parseInt).toArray();     
-            
+                    .map(String::trim).mapToInt(Integer::parseInt).toArray();
+
             //Copia los elementos en la matris de enteros.
             System.arraycopy(arr, 0, intMatrix[i], 0, arr.length);
         }
@@ -130,6 +122,7 @@ public class SudokuXController {
 
     /**
      * Establece el tablero de pistas.
+     *
      * @param pBoard el tablero de pistas
      */
     private void setBoardClues(int[][] pBoard) {
@@ -137,8 +130,8 @@ public class SudokuXController {
     }
 
     /**
-     * Genera una matriz con números aletorios que prolog comprueba
-     * que sean válidos.
+     * Genera una matriz con números aletorios que prolog comprueba que sean
+     * válidos.
      *
      * @return matriz con las pistas de prolog
      */
@@ -147,20 +140,24 @@ public class SudokuXController {
         String stringBoard;
 
         //Ingresa números aleatorios.
-        for (int i = 0; i < 17; i++) {
+        int i = 0;
+        while (i < 17) {
             int indexI = randInt(0, 8);
             int indexJ = randInt(0, 8);
             int num = randInt(1, 9);
-            clueBoard[indexI][indexJ] = num;
+            if (clueBoard[indexI][indexJ] == 0) {
+                clueBoard[indexI][indexJ] = num;
 
-            stringBoard = toStringBoard(clueBoard); //Convierte la matriz a string
-            String verify = String.format("getBoard(%s,Board)", stringBoard);
-            Query verifyBoard = new Query(verify);
+                stringBoard = toStringBoard(clueBoard); //Convierte la matriz a string
+                String verify = String.format("getBoard(%s,Board)", stringBoard);
+                Query verifyBoard = new Query(verify);
 
-            //verifica si es válida la solución
-            if (!verifyBoard.hasSolution()) {
-                clueBoard[indexI][indexJ] = 0;
-                i--;
+                //verifica si es válida la solución
+                if (!verifyBoard.hasSolution()) {
+                    clueBoard[indexI][indexJ] = 0;
+                } else {
+                    i++;
+                }
             }
         }
         return clueBoard;
@@ -186,8 +183,8 @@ public class SudokuXController {
     /**
      * Combierte una matriz de enteros a string
      *
-     * @param   board la matriz de enteros a convertir.
-     * @return  representación de la matriz en string 
+     * @param board la matriz de enteros a convertir.
+     * @return representación de la matriz en string
      */
     private String toStringBoard(int[][] board) {
         String stringBoard = "["; //Inicia la matriz

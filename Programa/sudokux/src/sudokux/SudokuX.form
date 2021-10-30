@@ -2250,6 +2250,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo Juego"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewGameActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Restart">
           <Properties>
@@ -2269,6 +2272,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Verificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerifyActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Suggestion">
           <Properties>
