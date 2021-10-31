@@ -1622,10 +1622,10 @@ public class SudokuX extends javax.swing.JFrame {
     }//GEN-LAST:event_inputTyped
 
     private void SuggestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuggestionActionPerformed
-        if (numSuggestions != 0) {
+        if (suggestions != 0) {
             newSuggestion();
-            numSuggestions--;
-            setSuggestions(numSuggestions);
+            suggestions--;
+            setSuggestions(suggestions);
         }
     }//GEN-LAST:event_SuggestionActionPerformed
 
@@ -1854,8 +1854,8 @@ public class SudokuX extends javax.swing.JFrame {
      */
     private void verify() {
         int[][] board = controller.getBoard();
-//        System.out.println(Arrays.deepToString(currentBoard));
-//        System.out.println(Arrays.deepToString(board));
+        System.out.println(Arrays.deepToString(currentBoard));
+        System.out.println(Arrays.deepToString(board));
         int empty = 0;
         int incorrect = 0;
         for (int i = 0; i < 9; i++) {
